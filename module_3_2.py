@@ -1,5 +1,5 @@
-def send_email(message, recipient, sender="university.help@gmail.com"):
-    if "@" not in recipient and "@" not in sender or '.com' not in recipient and '.com' not in sender or '.ru' not in recipient and '.ru' not in sender or ".net" not in  recipient and ".net" not in sender:
+def send_email(message, recipient, *, sender="university.help@gmail.com"):
+    if "@" not in recipient or "@" not in sender or not sender.endswith('.com') and not sender.endswith('.ru') and not sender.endswith('.net') or not recipient.endswith('.ru') and not recipient.endswith('.net') and not recipient.endswith('.com'):
         print('Невозможно отправить письмо с адреса <', sender, '> на адрес <', recipient, '>')
     elif sender == recipient:
         print("Нельзя отправить письмо самому себе!")
@@ -8,4 +8,7 @@ def send_email(message, recipient, sender="university.help@gmail.com"):
     else: print('НЕСТАНДАРТНЫЙ ОТПРАВИТЕЛЬ! Письмо отправлено с адреса <', sender, '> на адрес <', recipient, '>.')
 
 
-send_email(1, 'university.help@gmail.com')
+send_email('Это сообщение для проверки связи', 'vasyok1337@gmail.com')
+send_email('Вы видите это сообщение как лучший студент курса!', 'urban.fan@mail.ru', sender='urban.info@gmail.com')
+send_email('Пожалуйста, исправьте задание', 'urban.student@mail.ru', sender='urban.teacher@mail.uk')
+send_email('Напоминаю самому себе о вебинаре', 'urban.teacher@mail.ru', sender='urban.teacher@mail.ru')
